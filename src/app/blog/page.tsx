@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function Blog() {
   const [selected, setSelected] = useState(null);
 
-  const handleSelect = (index: any) => {
+  const handleSelect = (index: any | number) => {
     setSelected(index);
   };
   return (
