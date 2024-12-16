@@ -6,11 +6,11 @@ import Image from "next/image";
 export default function Contact() {
   return (
     <div className="h-[2365px] w-[1440] bg-white">
-      <div className="absolute top-0">
+      <div className="absolute top-0 bg-white">
         <Header />
       </div>
 
-      <div>
+      <div className="bg-white">
         <Herosection
           title="Contact"
           previous_page="Home"
@@ -157,11 +157,11 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="absolute top-[1560px]">
+      <div className="absolute top-[1560px] bg-white">
         <Features />
       </div>
 
-      <div className="absolute top-[1860px]">
+      <div className="absolute top-[1860px] bg-white">
         <Footer />
       </div>
     </div>

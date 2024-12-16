@@ -15,11 +15,11 @@ export default function Blog() {
   };
   return (
     <div className="h-[3981px] w-[1440] bg-white">
-      <div className="absolute top-0">
+      <div className="absolute top-0 bg-white">
         <Header />
       </div>
 
-      <div>
+      <div className="bg-white">
         <Herosection
           title="Blog"
           previous_page="Home"
@@ -187,7 +187,7 @@ export default function Blog() {
           </div>
         </div>
 
-        <div className="h-[90px] w-[392px] absolute top-[2650px] left-[524px] flex flex-col justify-end">
+        <div className="h-[90px] w-[392px] absolute top-[2650px] left-[524px] flex flex-col justify-end bg-white">
           <div className="flex flex-row justify-between">
             {["1", "2", "3"].map((button, index) => (
               <button
@@ -220,7 +220,7 @@ export default function Blog() {
         </div>
       </div>
 
-      <div className="absolute top-[3184px]">
+      <div className="absolute top-[3184px] bg-white">
         <Features />
       </div>
 
