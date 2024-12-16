@@ -28,7 +28,7 @@ export default function Blog() {
         />
       </div>
 
-      <div className="h-[2710px] w-[1440px] absolute top-[416px] font-[Poppins]">
+      <div className="h-[2710px] w-[1440px] absolute top-[416px] font-[Poppins] bg-white">
         <div className="h-[2490px] w-[820px] absolute top-[106px] left-[97px]">
           <div>
             <Post

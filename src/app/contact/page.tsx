@@ -19,7 +19,7 @@ export default function Contact() {
         />
       </div>
 
-      <div className="h-[1144px] w-[1440px] absolute top-[416px] font-[Poppins]">
+      <div className="h-[1144px] w-[1440px] absolute top-[416px] font-[Poppins] bg-white">
         <div>
           <div className="h-[52px] w-[375px] font-semibold text-[36px] leading-[54px] text-center text-black absolute top-[98px] left-[533px]">
             Get In Touch With Us
