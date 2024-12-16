@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="h-[505px] w-[1440px] border-t-[1px] font-[Poppins]">
+    <div className="h-[505px] w-[1440px] border-t-[1px] font-[Poppins] bg-white">
       <div className="h-[419px] w-[1240px] absolute top-[48px] left-[100px]">
         <p className="text-[24px] leading-[36px] font-bold">Funiro.</p>
         <div className="h-[72px] w-[285px] absolute top-[86px] text-[16px] leading-[24px] font-normal text-[#9f9f9f]">

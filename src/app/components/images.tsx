@@ -10,7 +10,7 @@ export default function Images({
   labelType = "",
 }) {
   return (
-    <div className="image-with-description h-[446px] w-[285px]  relative group">
+    <div className="h-[446px] w-[285px]  relative group">
       <div>
         <Image src={src} alt="image" width={285} height={301} />
         {labelType === "new" && (

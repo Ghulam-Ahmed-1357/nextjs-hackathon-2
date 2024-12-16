@@ -6,7 +6,7 @@ export default function Herosection({
   image = "",
 }) {
   return (
-    <div className="absolute top-[100px]">
+    <div className="h-[316px] w-[1440px] absolute top-[100px]">
       <Image src="/shop1.png" alt="image" height={316} width={1440} />
 
       <div>

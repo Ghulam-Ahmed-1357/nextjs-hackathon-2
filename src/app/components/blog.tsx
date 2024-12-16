@@ -1,7 +1,7 @@
 import Image from "next/image";
 export default function Post({ src = "", title = "", description = "" }) {
   return (
-    <div className="h-[794px] w-[820px] absolute left-[3px] font-[Poppins]">
+    <div className="h-[794px] w-[820px] absolute left-[3px] font-[Poppins] bg-white">
       <Image
         src={src}
         alt="image"
