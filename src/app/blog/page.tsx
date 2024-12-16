@@ -4,13 +4,13 @@ import Footer from "../components/footer";
 import Features from "../components/frame161";
 import Herosection from "../components/group78";
 import Header from "../components/header";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import Image from "next/image";
 
 export default function Blog() {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<number | null>(null);
 
-  const handleSelect = (index: any | number) => {
+  const handleSelect = (index: number ) => {
     setSelected(index);
   };
   return (
