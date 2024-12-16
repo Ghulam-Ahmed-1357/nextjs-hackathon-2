@@ -5,7 +5,7 @@ import Footer from "./components/footer";
 
 export default function Home() {
   return (
-    <div className="h-[4835px] w-[1440px]">
+    <div className="h-[4835px] w-[1440px] bg-white">
       <Header />
       <div
         id="Banner -> Mask Group"

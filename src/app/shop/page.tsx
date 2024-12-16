@@ -14,7 +14,7 @@ export default function Shop() {
     setSelected(index);
   };
   return (
-    <div className="h-[3474px] w-[1440px] font-[Poppins]">
+    <div className="h-[3474px] w-[1440px] font-[Poppins] bg-white">
       <div className="absolute top-0">
         <Header />
       </div>
