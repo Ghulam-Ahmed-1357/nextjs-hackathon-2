@@ -14,7 +14,7 @@ export default function Blog() {
     setSelected(index);
   };
   return (
-    <div className="h-[3981px] w-[1440] bg-white">
+    <div className="h-[3981px] w-[1440] bg-white md:bg-white">
       <div className="absolute top-0 bg-white">
         <Header />
       </div>

@@ -5,7 +5,7 @@ import Header from "../components/header";
 import Image from "next/image";
 export default function Contact() {
   return (
-    <div className="h-[2365px] w-[1440] bg-white">
+    <div className="h-[2365px] w-[1440] bg-white md:bg-white">
       <div className="absolute top-0 bg-white">
         <Header />
       </div>
