@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import Features from "../components/frame161";
 import Herosection from "../components/group78";
 import Header from "../components/header";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Blog() {

@@ -8,9 +8,9 @@ import Herosection from "../components/group78";
 import Features from "../components/frame161";
 
 export default function Shop() {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<number | null>(null);
 
-  const handleSelect = (index: any) => {
+  const handleSelect = (index: number) => {
     setSelected(index);
   };
   return (
