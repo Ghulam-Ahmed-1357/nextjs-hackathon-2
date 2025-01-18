@@ -48,15 +48,15 @@ export default async function Home() {
           id="Group 107"
           className="h-[76.71px] w-[559px] absolute top-0 left-[318px]"
         >
-          <p className="font-[Poppins] font-bold text-[32px] leading-[auto] absolute left-[94px]">
+          <p className="font-[Poppins] font-bold text-[32px] leading-[auto] absolute left-[94px] text-[#333333]">
             Browse The Range
           </p>
-          <p className="font-[Poppins] font-normal text-[20px] leading-[auto] absolute left-0 top-[48px]">
+          <p className="font-[Poppins] font-normal text-[20px] leading-[auto] absolute left-0 top-[48px] text-[#666666]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
         </div>
         <div className="relative top-[139px] left-[0px] flex gap-5">
-          <Image src="/dining.png" alt="image" height={480} width={381} />
+          <div className="h-[480px] w-[381px] relative"><Image src="/dining.png" alt="image" fill className="object-fill" /></div>
           <Image src="/living.png" alt="image" height={480} width={381} />
           <Image src="/bedroom.png" alt="image" height={480} width={381} />
         </div>
