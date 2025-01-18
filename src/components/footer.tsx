@@ -41,7 +41,7 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Enter Your Email Address"
-                className="bg-transparent"
+                className="bg-transparent text-black"
               />
             </div>
             <div className="text-[14px] leading-[21px] font-medium text-[#000000] absolute top-[79px] left-[635px] border-b border-[#000000]">

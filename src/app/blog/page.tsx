@@ -1,9 +1,9 @@
 "use client";
-import Post from "../components/blog";
-import Footer from "../components/footer";
-import Features from "../components/frame161";
-import Herosection from "../components/group78";
-import Header from "../components/header";
+import Post from "../../components/blog";
+import Footer from "../../components/footer";
+import Features from "../../components/frame161";
+import Herosection from "../../components/group78";
+import Header from "../../components/header";
 import { useState } from "react";
 import Image from "next/image";
 

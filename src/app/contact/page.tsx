@@ -1,16 +1,16 @@
-import Footer from "../components/footer";
-import Features from "../components/frame161";
-import Herosection from "../components/group78";
-import Header from "../components/header";
+import Footer from "../../components/footer";
+import Features from "../../components/frame161";
+import Herosection from "../../components/group78";
+import Header from "../../components/header";
 import Image from "next/image";
 export default function Contact() {
   return (
-    <div className="h-[2365px] w-[1440] bg-white md:bg-white">
+    <div className="h-[2365px] w-[1440] bg-white overflow-hidden">
       <div className="absolute top-0 bg-white">
         <Header />
       </div>
 
-      <div className="bg-white">
+      <div className="bg-white overflow-hidden">
         <Herosection
           title="Contact"
           previous_page="Home"

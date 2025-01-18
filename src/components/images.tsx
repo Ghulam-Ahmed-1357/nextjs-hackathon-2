@@ -4,18 +4,18 @@ export default function Images({
   src = "",
   title = "",
   name = "",
-  rate = "",
-  previousrate = "",
+  price = "",
+  previousprice = "",
   discount = "",
   labelType = "",
 }) {
   return (
     <div className="h-[446px] w-[285px]  relative group">
-      <div>
-        <Image src={src} alt="image" width={285} height={301} />
-        {labelType === "new" && (
+      <div className="w-[285px] h-[301px] relative">
+        <Image src={src} alt="image" fill className="object-fill" />
+        {labelType === "isNew" && (
           <div
-            id="new"
+            id="isNew"
             className="h-[48px] w-[48px] absolute top-[24px] left-[213px] bg-[#2ec1ac] text-[#ffffff] rounded-full font-[Poppins] text-[16px] leading-[150%] font-medium flex justify-center items-center"
           >
             New
@@ -26,7 +26,7 @@ export default function Images({
             id="discount"
             className="h-[48px] w-[48px] absolute top-[24px] left-[213px] bg-[#E97171] text-[#ffffff] rounded-full font-[Poppins] text-[16px] leading-[150%] font-medium flex justify-center items-center"
           >
-            {discount}
+            {discount}%
           </div>
         )}
       </div>
@@ -58,11 +58,11 @@ export default function Images({
           <p className=" absolute top-[37px] font-medium text-[16px] leading-[150%] text-[#898989]">
             {name}
           </p>
-          <span className=" absolute top-[69px] font-semibold text-[20px] leading-[150%] text-[#3a3a3a]">
-            {rate}
+          <span className="absolute top-[69px] font-semibold text-[20px] leading-[150%] text-[#3a3a3a]">
+            Rp {price}
           </span>
-          <span className="absolute top-[69px] left-[147px] line-through font-normal text-[16px] leading-[150%] text-[#b0b0b0]">
-            {previousrate}
+          <span className={`absolute top-[69px] left-[147px] line-through font-normal text-[16px] leading-[150%] text-[#b0b0b0] ${labelType === "discount" ? "block" : "hidden"}`}>
+            Rp {previousprice}
           </span>
         </div>
       </div>

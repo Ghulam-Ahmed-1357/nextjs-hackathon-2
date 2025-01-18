@@ -1,18 +1,29 @@
+/* eslint-disable @next/next/no-async-client-component */
 "use client";
-import Footer from "../components/footer";
-import Header from "../components/header";
+import Footer from "../../components/footer";
+import Header from "../../components/header";
 import Image from "next/image";
-import Images from "../components/images";
-import { useState } from "react";
-import Herosection from "../components/group78";
-import Features from "../components/frame161";
+import { useEffect, useState } from "react";
+import Herosection from "../../components/group78";
+import Features from "../../components/frame161";
+import { getProducts } from "../api_data/products";
+import Images from "@/components/images";
+import { ProductData } from "@/types/data";
 
 export default function Shop() {
   const [selected, setSelected] = useState<number | null>(null);
+  const [products, setProducts] = useState<ProductData[]>([]);
 
   const handleSelect = (index: number) => {
     setSelected(index);
   };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const products = await getProducts();
+      setProducts(products);
+    };
+    fetchProducts();
+  }, []);
   return (
     <div className="h-[3474px] w-[1440px] font-[Poppins] bg-white">
       <div className="absolute top-0">
@@ -65,13 +76,25 @@ export default function Shop() {
       </div>
 
       <div className="h-[2034px] w-[1244px] absolute top-[580px] left-[99px]">
-        <div id="Frame 7" className="h-[446px] w-[1236px] flex gap-8">
-          <Images
+        <div id="Frame 7" className="h-[446px] w-[1236px] grid grid-cols-4 gap-8">
+          {products.slice(0,16).map((product:ProductData) => (
+            <Images
+            key={product._id}
+              src={product.productImage_url}
+              title={product.title}
+              name={product.tags[0]}
+              price={(product.price).toString()}
+              previousprice={(Math.floor(product.price/(1-(product.dicountPercentage/100)))).toString()}
+              discount={(product.dicountPercentage).toString()}
+              labelType = {(product.dicountPercentage == 0 && product.isNew == false) ? "" : (product.dicountPercentage == 0 ? "isNew" : "discount")}
+            />
+          ))}
+          {/* <Images
             src="/f1.png"
             title="Syltherine"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
             discount="-30%"
             labelType="discount"
           />
@@ -79,15 +102,15 @@ export default function Shop() {
             src="/f2.png"
             title="Leviosa"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
           />
           <Images
             src="/f3.png"
             title="Lolito"
             name="Luxury big sofa"
-            rate="Rp 7.000.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 7.000.000"
+            previousprice="Rp 14.000.000"
             discount="-50%"
             labelType="discount"
           />
@@ -95,8 +118,8 @@ export default function Shop() {
             src="/f4.png"
             title="Respira"
             name="Outdoor bar table and stool"
-            rate="Rp 500.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 500.000"
+            previousprice="Rp 14.000.000"
             labelType="new"
           />
         </div>
@@ -108,8 +131,8 @@ export default function Shop() {
             src="/f1.png"
             title="Syltherine"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
             discount="-30%"
             labelType="discount"
           />
@@ -117,15 +140,15 @@ export default function Shop() {
             src="/f2.png"
             title="Leviosa"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
           />
           <Images
             src="/f3.png"
             title="Lolito"
             name="Luxury big sofa"
-            rate="Rp 7.000.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 7.000.000"
+            previousprice="Rp 14.000.000"
             discount="-50%"
             labelType="discount"
           />
@@ -133,8 +156,8 @@ export default function Shop() {
             src="/f4.png"
             title="Respira"
             name="Outdoor bar table and stool"
-            rate="Rp 500.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 500.000"
+            previousprice="Rp 14.000.000"
             labelType="new"
           />
         </div>
@@ -146,8 +169,8 @@ export default function Shop() {
             src="/f1.png"
             title="Syltherine"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
             discount="-30%"
             labelType="discount"
           />
@@ -155,15 +178,15 @@ export default function Shop() {
             src="/f2.png"
             title="Leviosa"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
           />
           <Images
             src="/f3.png"
             title="Lolito"
             name="Luxury big sofa"
-            rate="Rp 7.000.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 7.000.000"
+            previousprice="Rp 14.000.000"
             discount="-50%"
             labelType="discount"
           />
@@ -171,8 +194,8 @@ export default function Shop() {
             src="/f4.png"
             title="Respira"
             name="Outdoor bar table and stool"
-            rate="Rp 500.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 500.000"
+            previousprice="Rp 14.000.000"
             labelType="new"
           />
         </div>
@@ -184,8 +207,8 @@ export default function Shop() {
             src="/f1.png"
             title="Syltherine"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
             discount="-30%"
             labelType="discount"
           />
@@ -193,15 +216,15 @@ export default function Shop() {
             src="/f2.png"
             title="Leviosa"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
           />
           <Images
             src="/f3.png"
             title="Lolito"
             name="Luxury big sofa"
-            rate="Rp 7.000.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 7.000.000"
+            previousprice="Rp 14.000.000"
             discount="-50%"
             labelType="discount"
           />
@@ -209,10 +232,10 @@ export default function Shop() {
             src="/f4.png"
             title="Respira"
             name="Outdoor bar table and stool"
-            rate="Rp 500.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 500.000"
+            previousprice="Rp 14.000.000"
             labelType="new"
-          />
+          /> */}
         </div>
         <div className="h-[90px] w-[392px] absolute top-[1944px] left-[426px] flex flex-col justify-end">
           <div className="flex flex-row justify-between">

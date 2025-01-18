@@ -1,11 +1,13 @@
 import Image from "next/image";
-import Header from "./components/header";
-import Images from "./components/images";
-import Footer from "./components/footer";
-
-export default function Home() {
+import Header from "../components/header";
+import Images from "../components/images";
+import Footer from "../components/footer";
+import { ProductData } from "@/types/data";
+import { getProducts } from "@/app/api_data/products";
+export default async function Home() {
+  const products = await getProducts();
   return (
-    <div className="h-[4835px] w-[1440px] bg-white">
+    <div className="h-[4835px] w-[1440px] bg-white overflow-hidden">
       <Header />
       <div
         id="Banner -> Mask Group"
@@ -74,41 +76,53 @@ export default function Home() {
         </p>
         <div
           id="Frame 7"
-          className="h-[446px] w-[1236px] absolute top-[80px] left-0 flex gap-8"
+          className="h-[446px] w-[1236px] grid grid-cols-4 absolute top-[80px] left-0 gap-8"
         >
-          <Images
+          {products.slice(0,8).map((product:ProductData) => (
+            <Images
+              key={product._id}
+              src={product.productImage_url}
+              title={product.title}
+              name={product.tags[0]}
+              price={(product.price).toString()}
+              previousprice={(product.price + 200).toString()}
+              discount={(product.dicountPercentage).toString()}
+              labelType = {(product.dicountPercentage == 0 && product.isNew == false) ? "" : (product.dicountPercentage == 0 ? "isNew" : "discount")}
+               />
+          ))}
+          {/* <Images
             src="/f1.png"
             title="Syltherine"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
-            discount="-30%"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
+            discount="-30"
             labelType="discount"
           />
           <Images
             src="/f2.png"
             title="Leviosa"
             name="Stylish cafe chair"
-            rate="Rp 2.500.000"
-            previousrate="Rp 3.500.000"
-            discount="-30%"
+            price="Rp 2.500.000"
+            previousprice="Rp 3.500.000"
+            discount="-30"
             labelType="discount"
           />
           <Images
             src="/f3.png"
             title="Lolito"
             name="Luxury big sofa"
-            rate="Rp 7.000.000"
-            previousrate="Rp 14.000.000"
-            discount="-50%"
+            price="Rp 7.000.000"
+            previousprice="Rp 14.000.000"
+            discount="-50"
             labelType="discount"
           />
           <Images
             src="/f4.png"
             title="Respira"
             name="Outdoor bar table and stool"
-            rate="Rp 500.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 500.000"
+            previousprice="Rp 14.000.000"
             labelType="new"
           />
         </div>
@@ -120,24 +134,24 @@ export default function Home() {
             src="/f5.png"
             title="Grifo"
             name="Night lamp"
-            rate="Rp 1.500.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 1.500.000"
+            previousprice="Rp 3.500.000"
             labelType="new"
           />
           <Images
             src="/f6.png"
             title="Muggo"
             name="Small mug"
-            rate="Rp 150.000"
-            previousrate="Rp 3.500.000"
+            price="Rp 150.000"
+            previousprice="Rp 3.500.000"
             labelType="new"
           />
           <Images
             src="/f7.png"
             title="Pingky"
             name="Cute bed set"
-            rate="Rp 7.000.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 7.000.000"
+            previousprice="Rp 14.000.000"
             discount="-50%"
             labelType="discount"
           />
@@ -145,10 +159,10 @@ export default function Home() {
             src="/f8.png"
             title="Potty"
             name="Minimalist flower pot"
-            rate="Rp 500.000"
-            previousrate="Rp 14.000.000"
+            price="Rp 500.000"
+            previousprice="Rp 14.000.000"
             labelType="new"
-          />
+          /> */}
         </div>
         <button className="h-[48px] w-[245px] absolute top-[1036px] left-[496px] text-color1 border-[1px] border-color1">
           Show More
