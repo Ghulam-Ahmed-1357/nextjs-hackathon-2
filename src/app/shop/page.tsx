@@ -51,7 +51,7 @@ export default function Shop() {
             </button>
             <div className="w-[37px] border-l-2 border-[#9f9f9f] relative left-[18px] top-0"></div>
             <div className="h-[24px] w-[203px] font-normal text-[16px] leading-[24px]">
-              Showing 1–16 of 32 results
+              Showing 1–16 of {products.length} results
             </div>
           </div>
           <div className="h-[55px] w-[443px] flex justify-between">
