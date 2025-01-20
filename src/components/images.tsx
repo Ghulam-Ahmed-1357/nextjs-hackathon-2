@@ -10,7 +10,7 @@ export default function Images({
   labelType = "",
 }) {
   return (
-    <div className="h-[446px] w-[285px]  relative group">
+    <div className="h-[446px] w-[285px]  relative group ">
       <div className="w-[285px] h-[301px] relative">
         <Image src={src} alt="image" fill className="object-fill" />
         {labelType === "isNew" && (
