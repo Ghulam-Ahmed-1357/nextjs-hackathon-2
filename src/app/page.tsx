@@ -4,6 +4,7 @@ import Images from "../components/images";
 import Footer from "../components/footer";
 import { ProductData } from "@/types/data";
 import { getProducts } from "@/app/api_data/products";
+import Link from "next/link";
 export default async function Home() {
   const products = await getProducts();
   return (
@@ -79,94 +80,28 @@ export default async function Home() {
           className="h-[446px] w-[1236px] grid grid-cols-4 absolute top-[80px] left-0 gap-8"
         >
           {products.slice(0,8).map((product:ProductData) => (
+            <Link href={`/product/${product._id}`}  key={product._id}><div
+           
+            className="transition-transform transform hover:scale-105"
+          >
             <Images
-              key={product._id}
+              
               src={product.productImage_url}
               title={product.title}
               name={product.tags[0]}
               price={(product.price).toString()}
-              previousprice={(product.price + 200).toString()}
+              previousprice={(Math.floor(product.price/(1-(product.dicountPercentage/100)))).toString()}
               discount={(product.dicountPercentage).toString()}
               labelType = {(product.dicountPercentage == 0 && product.isNew == false) ? "" : (product.dicountPercentage == 0 ? "isNew" : "discount")}
                />
+               </div>
+               </Link>
           ))}
-          {/* <Images
-            src="/f1.png"
-            title="Syltherine"
-            name="Stylish cafe chair"
-            price="Rp 2.500.000"
-            previousprice="Rp 3.500.000"
-            discount="-30"
-            labelType="discount"
-          />
-          <Images
-            src="/f2.png"
-            title="Leviosa"
-            name="Stylish cafe chair"
-            price="Rp 2.500.000"
-            previousprice="Rp 3.500.000"
-            discount="-30"
-            labelType="discount"
-          />
-          <Images
-            src="/f3.png"
-            title="Lolito"
-            name="Luxury big sofa"
-            price="Rp 7.000.000"
-            previousprice="Rp 14.000.000"
-            discount="-50"
-            labelType="discount"
-          />
-          <Images
-            src="/f4.png"
-            title="Respira"
-            name="Outdoor bar table and stool"
-            price="Rp 500.000"
-            previousprice="Rp 14.000.000"
-            labelType="new"
-          />
+          
         </div>
-        <div
-          id="Frame 8"
-          className="h-[446px] w-[1236px] absolute top-[558px] left-0 flex gap-8"
-        >
-          <Images
-            src="/f5.png"
-            title="Grifo"
-            name="Night lamp"
-            price="Rp 1.500.000"
-            previousprice="Rp 3.500.000"
-            labelType="new"
-          />
-          <Images
-            src="/f6.png"
-            title="Muggo"
-            name="Small mug"
-            price="Rp 150.000"
-            previousprice="Rp 3.500.000"
-            labelType="new"
-          />
-          <Images
-            src="/f7.png"
-            title="Pingky"
-            name="Cute bed set"
-            price="Rp 7.000.000"
-            previousprice="Rp 14.000.000"
-            discount="-50%"
-            labelType="discount"
-          />
-          <Images
-            src="/f8.png"
-            title="Potty"
-            name="Minimalist flower pot"
-            price="Rp 500.000"
-            previousprice="Rp 14.000.000"
-            labelType="new"
-          /> */}
-        </div>
-        <button className="h-[48px] w-[245px] absolute top-[1036px] left-[496px] text-color1 border-[1px] border-color1">
+        <Link href={"/shop"}><button className="h-[48px] w-[245px] absolute top-[1036px] left-[496px] text-color1 border-[1px] border-color1">
           Show More
-        </button>
+        </button></Link>
       </div>
       <div className="h-[670px] w-[1440px] absolute top-[2763px] bg-[#fcf8f3] font-[Poppins]">
         <div className="h-[151px] w-[422px] absolute top-[223px] left-[100px]">

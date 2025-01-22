@@ -30,7 +30,7 @@ export default function Images({
           </div>
         )}
       </div>
-      <div className="absolute inset-0 bg-[#3a3a3a] bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      {/* <div className="absolute inset-0 bg-[#3a3a3a] bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
         <button className="h-[48px] w-[202px] bg-[#ffffff] text-[#e89f71] absolute top-[175px] left-[41px]">
           Add to cart
         </button>
@@ -48,7 +48,7 @@ export default function Images({
             <span>Like</span>
           </button>
         </div>
-      </div>
+      </div> */}
 
       <div className="h-[145px] w-[285px] bg-[#f4f5f7] bg-opacity-100 font-[Poppins]">
         <div className="h-[99px] w-[249px] relative top-4 left-4">

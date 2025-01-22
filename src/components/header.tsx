@@ -51,13 +51,13 @@ export default function Header() {
             width={28}
             className="cursor-pointer"
           />
-          <Image
+          <Link href={"/cart"}><Image
             src="/4.svg"
             alt="image"
             height={28}
             width={28}
             className="cursor-pointer"
-          />
+          /></Link>
         </div>
       </div>
     </div>
