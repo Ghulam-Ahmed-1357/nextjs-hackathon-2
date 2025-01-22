@@ -1,63 +1,48 @@
-"use client";
+"use client"
 import Image from "next/image";
 import { getProducts } from "@/app/api_data/products";
 import { ProductData } from "@/types/data";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Images from "@/components/images";
 import Footer from "@/components/footer";
+import { FunctionsPage } from "@/components/functions";
+import { useEffect } from "react";
 
 export default function ProductDetail({
   params,
 }: {
   params: { product: string };
 }) {
-  const [products, setProducts] = useState<ProductData[]>([]);
-  const [showFullDescription, setShowFullDescription] = useState(false);
-  const [count, setCount] = useState(1);
-  const [cart, setCart] = useState<ProductData[]>([]);
-
-  const handleAddToCard = (product: ProductData) => {
-    if(!cart.includes(product)){
-    setCart((prevProduct) => [...prevProduct, product]);
-    handleClickEvent();
-    } else{
-      alert("Product is already added in the cart")
-    }
-  };
-
-  const handleClickEvent = ()=>{
-    alert("Product added successfully.")
-  }
-
-  const incremet = () => {
-    setCount(count + 1);
-  };
-  const decrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
-
+  const {
+    showFullDescription,
+    products,
+    count,
+    increment,
+    setProducts,
+    setProduct,
+    handleAddToCart,
+    handleDescription,
+    otherProducts,
+    decrement,
+  } = FunctionsPage();
+  
   useEffect(() => {
     const fetchProducts = async () => {
-      const products = await getProducts();
-      setProducts(products);
+      try {
+        const products = await getProducts();
+        setProducts(products);
+        const foundProduct = products.find((product: ProductData) => product._id === params.product);
+        setProduct(foundProduct);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
     fetchProducts();
-  }, []);
+  }, [params.product]);
 
   const product: ProductData | undefined = products.find(
     (product: ProductData) => product._id === params.product
   );
-
-  const otherProducts: ProductData[] = products.filter(
-    (product) => product._id !== params.product
-  );
-
-  const handleDescription = () => {
-    setShowFullDescription(!showFullDescription);
-  };
 
   if (!product) {
     return (
@@ -96,13 +81,13 @@ export default function ProductDetail({
                   )}
                   {product.dicountPercentage != 0 && (
                     <div className="flex flex-row gap-4">
-                        <p className="md:pt-3 text-gray-600">Discount</p>
-                    <div
-                      id="discount"
-                      className="h-[48px] w-[48px] md:left-16 lg:left-[86px] bg-[#E97171] text-[#ffffff] rounded-full font-[Poppins] text-[16px] leading-[150%] font-medium flex justify-center items-center"
-                    >
-                      {product.dicountPercentage}%
-                    </div>
+                      <p className="md:pt-3 text-gray-600">Discount</p>
+                      <div
+                        id="discount"
+                        className="h-[48px] w-[48px] md:left-16 lg:left-[86px] bg-[#E97171] text-[#ffffff] rounded-full font-[Poppins] text-[16px] leading-[150%] font-medium flex justify-center items-center"
+                      >
+                        {product.dicountPercentage}%
+                      </div>
                     </div>
                   )}
                 </div>
@@ -130,7 +115,7 @@ export default function ProductDetail({
                 <div className="text-lg px-4">{count}</div>
                 <button
                   className="w-1/4 rounded-e-xl text-xl px-2 py-1 bg-gray-200 hover:bg-gray-300"
-                  onClick={incremet}
+                  onClick={increment}
                 >
                   +
                 </button>
@@ -138,11 +123,14 @@ export default function ProductDetail({
             </div>
 
             <div className="flex justify-start items-center pt-6">
-              <button onClick={() => handleAddToCard(product)} className="w-52 h-12 md:h-16 text-base md:text-xl rounded-2xl border border-black text-black bg-gray-200">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="w-52 h-12 md:h-16 text-base md:text-xl rounded-2xl border border-black text-black bg-gray-200"
+              >
                 Add To Cart
               </button>
             </div>
-            
+
             <div
               className="font-normal text-base md:hidden"
               onClick={handleDescription}
@@ -192,10 +180,16 @@ export default function ProductDetail({
           ))}
         </div>
 
-<div className="flex justify-center items-center py-10"><Link href={"/shop"}><button className="h-[48px] w-[245px] text-color1 border-[1px] border-color1 flex justify-center items-center">Back to Shop</button></Link>
-</div>
-<div className="bg-white flex justify-center items-center"><Footer/></div>
-
+        <div className="flex justify-center items-center py-10">
+          <Link href={"/shop"}>
+            <button className="h-[48px] w-[245px] text-color1 border-[1px] border-color1 flex justify-center items-center">
+              Back to Shop
+            </button>
+          </Link>
+        </div>
+        <div className="bg-white flex justify-center items-center">
+          <Footer />
+        </div>
       </div>
     );
   }
