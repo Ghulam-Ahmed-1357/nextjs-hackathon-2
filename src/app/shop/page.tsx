@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-async-client-component */
-"use client" 
+"use client";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Image from "next/image";
@@ -8,19 +8,31 @@ import Features from "../../components/frame161";
 import Images from "@/components/images";
 import { ProductData } from "@/types/data";
 import Link from "next/link";
-import {FunctionsPage} from "@/components/functions"
+import { FunctionsPage } from "@/components/functions";
+import { useEffect } from "react";
+import { getProducts } from "../api_data/products";
 
-
-export default function Shop() {
-  const{ 
+export default async function Shop() {
+  const {
     searchItem,
     showMore,
     handleShowMore,
     handleSearch,
-    filterProducts,
     otherProducts,
-    } = FunctionsPage();
-         
+  } = FunctionsPage();
+
+  const products = await getProducts();
+
+  const filterProducts: ProductData[] = searchItem
+  ? products.filter(
+      (p: ProductData) =>
+        p.title.toLowerCase().includes(searchItem.toLowerCase()) ||
+        p.tags.some((tag) =>
+          tag.toLowerCase().includes(searchItem.toLowerCase())
+        )
+    )
+  : products;
+
   return (
     <div className="font-[Poppins] bg-white">
       <div className="">

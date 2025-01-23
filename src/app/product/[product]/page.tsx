@@ -8,34 +8,23 @@ import Footer from "@/components/footer";
 import { FunctionsPage } from "@/components/functions";
 import { useEffect } from "react";
 
-export default function ProductDetail({
+export default async function ProductDetail({
   params,
 }: {
   params: { product: string };
 }) {
   const {
     showFullDescription,
-    products,
     count,
     increment,
-    setProducts,
     handleAddToCart,
     handleDescription,
     decrement,
-    setRelatedProducts,
   } = FunctionsPage();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
+  
         const products = await getProducts();
-        setProducts(products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-    fetchProducts();
-  }, [params.product]);
+        
 
   const product: ProductData | undefined = products.find(
     (product: ProductData) => product._id === params.product
