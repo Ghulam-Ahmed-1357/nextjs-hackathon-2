@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-async-client-component */
-"use client";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Image from "next/image";

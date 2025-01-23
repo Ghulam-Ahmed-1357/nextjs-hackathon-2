@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { getProducts } from "@/app/api_data/products";
 import { ProductData } from "@/types/data";
