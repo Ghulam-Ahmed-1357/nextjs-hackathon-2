@@ -6,7 +6,6 @@ import Link from "next/link";
 import Images from "@/components/images";
 import Footer from "@/components/footer";
 import { FunctionsPage } from "@/components/functions";
-import { useEffect } from "react";
 
 export default async function ProductDetail({
   params,
@@ -22,17 +21,16 @@ export default async function ProductDetail({
     decrement,
   } = FunctionsPage();
 
-  
-        const products = await getProducts();
-        
+  const products = await getProducts();
 
   const product: ProductData | undefined = products.find(
     (product: ProductData) => product._id === params.product
   );
 
-  const relatedProducts: ProductData[] = products.filter((p: ProductData) => 
-    p._id !== product?._id && 
-    p.tags.some((tag) => product?.tags.includes(tag))
+  const relatedProducts: ProductData[] = products.filter(
+    (p: ProductData) =>
+      p._id !== product?._id &&
+      p.tags.some((tag) => product?.tags.includes(tag))
   );
 
   if (!product) {
