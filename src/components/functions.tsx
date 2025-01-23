@@ -12,6 +12,7 @@ export const FunctionsPage = () => {
  const [count, setCount] = useState(1);
  const [cart, setCart] = useState<ProductData[]>([]);
  const [product, setProduct] = useState<ProductData | undefined>(undefined);
+ const [relatedProducts, setRelatedProducts] = useState<ProductData[]>([]);
 
   useEffect(() => {
      const fetchProducts = async () => {
@@ -89,7 +90,9 @@ export const FunctionsPage = () => {
     decrement,
     handleDescription,
     setProduct,
-    setProducts
+    setProducts,
+    relatedProducts,
+    setRelatedProducts,
   };
 }
 

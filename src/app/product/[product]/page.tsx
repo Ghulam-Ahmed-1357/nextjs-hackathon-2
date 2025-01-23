@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { getProducts } from "@/app/api_data/products";
 import { ProductData } from "@/types/data";
@@ -19,20 +19,17 @@ export default function ProductDetail({
     count,
     increment,
     setProducts,
-    setProduct,
     handleAddToCart,
     handleDescription,
-    otherProducts,
     decrement,
+    setRelatedProducts,
   } = FunctionsPage();
-  
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const products = await getProducts();
         setProducts(products);
-        const foundProduct = products.find((product: ProductData) => product._id === params.product);
-        setProduct(foundProduct);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -42,6 +39,11 @@ export default function ProductDetail({
 
   const product: ProductData | undefined = products.find(
     (product: ProductData) => product._id === params.product
+  );
+
+  const relatedProducts: ProductData[] = products.filter((p: ProductData) => 
+    p._id !== product?._id && 
+    p.tags.some((tag) => product?.tags.includes(tag))
   );
 
   if (!product) {
@@ -155,7 +157,7 @@ export default function ProductDetail({
           Related Products
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-8 pt-6 md:pt-10 bg-gray-100">
-          {otherProducts.slice(0, 4).map((product: ProductData) => (
+          {relatedProducts.slice(0, 4).map((product: ProductData) => (
             <Link href={`/product/${product._id}`} key={product._id}>
               <div className="transition-transform transform hover:scale-105">
                 <Images
