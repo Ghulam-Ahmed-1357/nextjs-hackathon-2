@@ -1,3 +1,4 @@
+"use client"
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Image from "next/image";
@@ -6,30 +7,47 @@ import Features from "../../components/frame161";
 import Images from "@/components/images";
 import { ProductData } from "@/types/data";
 import Link from "next/link";
-import { FunctionsPage } from "@/components/functions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProducts } from "../api_data/products";
 
-export default async function Shop() {
-  const {
-    searchItem,
-    showMore,
-    handleShowMore,
-    handleSearch,
-    otherProducts,
-  } = FunctionsPage();
+export default function Shop() {
+   const [products, setProducts] = useState<ProductData[]>([]);
+   const [searchItem, setSearchItem] = useState("");
+   const [showMore, setShowMore] = useState(false);
+ 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const allProducts = await getProducts();
+        setProducts(allProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
-  const products = await getProducts();
-
-  const filterProducts: ProductData[] = searchItem
-  ? products.filter(
-      (p: ProductData) =>
-        p.title.toLowerCase().includes(searchItem.toLowerCase()) ||
-        p.tags.some((tag) =>
-          tag.toLowerCase().includes(searchItem.toLowerCase())
-        )
-    )
-  : products;
+  const handleShowMore = () => {
+    setShowMore(!showMore);
+  };
+  
+   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchItem(event.target.value);
+  };
+  
+   const filterProducts = searchItem
+    ? products.filter(
+        (product) =>
+          product.title.toLowerCase().includes(searchItem.toLowerCase()) ||
+          product.tags.some((tag) =>
+            tag.toLowerCase().includes(searchItem.toLowerCase())
+          )
+      )
+    : products;
+  
+   const otherProducts = products.filter(
+    (product) => !filterProducts.includes(product)
+  );
 
   return (
     <div className="font-[Poppins] bg-white">

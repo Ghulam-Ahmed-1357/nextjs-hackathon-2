@@ -1,26 +1,60 @@
+"use client"
 import Image from "next/image";
 import { getProducts } from "@/app/api_data/products";
 import { ProductData } from "@/types/data";
 import Link from "next/link";
 import Images from "@/components/images";
 import Footer from "@/components/footer";
-import { FunctionsPage } from "@/components/functions";
+import { useEffect, useState } from "react";
 
-export default async function ProductDetail({
+export default function ProductDetail({
   params,
 }: {
   params: { product: string };
 }) {
-  const {
-    showFullDescription,
-    count,
-    increment,
-    handleAddToCart,
-    handleDescription,
-    decrement,
-  } = FunctionsPage();
-
-  const products = await getProducts();
+  const [showFullDescription, setShowFullDescription] = useState(false);
+  const [products, setProducts] = useState<ProductData[]>([]);
+  const [count, setCount] = useState(1);
+  const [cart, setCart] = useState<ProductData[]>([]);
+  // const [product, setProduct] = useState<ProductData | undefined>(undefined);
+ 
+   useEffect(() => {
+      const fetchProducts = async () => {
+        try {
+          const products = await getProducts();
+          setProducts(products);
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      }
+      fetchProducts();
+    }, []);
+ 
+   const handleAddToCart = (product: ProductData) => {
+     if(!cart.includes(product)){
+     setCart((prevProduct) => [...prevProduct, product]);
+     handleClickEvent();
+     } else{
+       alert("Product is already added in the cart")
+     }
+   };
+ 
+   const handleDescription = () => {
+     setShowFullDescription(!showFullDescription);
+   };
+ 
+     const handleClickEvent = ()=>{
+     alert("Product added successfully.")
+   }
+ 
+     const increment = () => {
+     setCount(count + 1);
+   };
+     const decrement = () => {
+     if (count > 1) {
+       setCount(count - 1);
+     }
+   };
 
   const product: ProductData | undefined = products.find(
     (product: ProductData) => product._id === params.product
@@ -30,7 +64,7 @@ export default async function ProductDetail({
     (p: ProductData) =>
       p._id !== product?._id &&
       p.tags.some((tag) => product?.tags.includes(tag))
-  );
+  ); 
 
   if (!product) {
     return (

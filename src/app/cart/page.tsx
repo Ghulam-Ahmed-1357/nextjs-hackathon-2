@@ -1,15 +1,19 @@
 import Herosection from "@/components/group78";
 import Header from "@/components/header";
+import { ProductData } from "@/types/data";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Cart(){
-    // const handleRemoveFromCart = (product_id:string)=>
-    //     {
-    //         const newData = cart.filter((item)=>{
-    //             return item._id != product_id
-    //         })
-    //         setCart(newData)
-    //     }
+      const [cart, setCart] = useState<ProductData[]>([]);
+
+    const handleRemoveFromCart = (product_id:string)=>
+        {
+            const newData = cart.filter((item)=>{
+                return item._id != product_id
+            })
+            setCart(newData)
+        }
     
     return(<div>
         <div>
@@ -20,11 +24,12 @@ export default function Cart(){
             <Herosection title="Cart" previous_page="Home" current_page="Cart" image="logo"/>
         </div>
 
+        
         <div className="flex flex-row mx-[100px] my-[67px]">
             <div>
             <div className="grid grid-cols-5 items-center font-medium text-[16px] text-black bg-[#f9f1e7] px-4 py-2 ">
             <span className="col-span-2">Product</span>
-        <span>Price</span>
+        <span>price</span>
         <span>Quantity</span>
         <span>Subtotal</span>
             </div>
@@ -40,7 +45,7 @@ export default function Cart(){
 
             <div>
                 <span className="text-black">sum</span>
-                <button className="ml-14"><Image src={"/delete.svg"} alt="icon" height={28} width={28}/></button>
+                <button onClick={() => handleRemoveFromCart} className="ml-14"><Image src={"/delete.svg"} alt="icon" height={28} width={28}/></button>
             </div>
             </div>
             </div>
