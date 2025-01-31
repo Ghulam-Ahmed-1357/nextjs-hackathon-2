@@ -1,14 +1,9 @@
-import Footer from "../../components/footer";
 import Features from "../../components/frame161";
 import Herosection from "../../components/group78";
-import Header from "../../components/header";
 import Image from "next/image";
 export default function Contact() {
   return (
     <div className="h-[2365px] w-[1440] bg-white overflow-hidden">
-      <div className="absolute top-0 bg-white">
-        <Header />
-      </div>
 
       <div className="bg-white overflow-hidden">
         <Herosection
@@ -161,9 +156,6 @@ export default function Contact() {
         <Features />
       </div>
 
-      <div className="absolute top-[1860px] bg-white">
-        <Footer />
-      </div>
     </div>
   );
 }

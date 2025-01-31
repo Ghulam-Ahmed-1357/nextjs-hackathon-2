@@ -1,6 +1,4 @@
 "use client"
-import Footer from "../../components/footer";
-import Header from "../../components/header";
 import Image from "next/image";
 import Herosection from "../../components/group78";
 import Features from "../../components/frame161";
@@ -51,10 +49,7 @@ export default function Shop() {
 
   return (
     <div className="font-[Poppins] bg-white">
-      <div className="">
-        <Header />
-      </div>
-
+     
       <div>
         <Herosection title="Shop" previous_page="Home" current_page="Shop" />
       </div>
@@ -151,9 +146,6 @@ export default function Shop() {
         <Features />
       </div>
 
-      <div className="">
-        <Footer />
-      </div>
     </div>
   );
 }

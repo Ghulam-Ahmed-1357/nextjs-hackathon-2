@@ -1,9 +1,7 @@
 "use client";
 import Post from "../../components/blog";
-import Footer from "../../components/footer";
 import Features from "../../components/frame161";
 import Herosection from "../../components/group78";
-import Header from "../../components/header";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -15,9 +13,6 @@ export default function Blog() {
   };
   return (
     <div className="h-[3981px] w-[1440] bg-white md:bg-white">
-      <div className="bg-white">
-        <Header />
-      </div>
 
       <div className="bg-white">
         <Herosection
@@ -224,9 +219,6 @@ export default function Blog() {
         <Features />
       </div>
 
-      <div className="absolute top-[3478px]">
-        <Footer />
-      </div>
     </div>
   );
 }

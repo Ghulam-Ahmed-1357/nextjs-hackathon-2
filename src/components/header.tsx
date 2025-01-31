@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default function Header() {
   return (
-    <div className="h-[100px] w-[1440px] bg-[#ffffff] bg-opacity-100 text-[#000000] text-opacity-100 ">
+    <div className="h-[100px] w-full bg-[#ffffff] bg-opacity-100 text-[#000000] text-opacity-100 ">
       <div className="h-[41px] w-[1286px] mt-[29px] ml-[54px] flex bg-white">
         <Image
           src="/logo.svg"
@@ -29,14 +29,14 @@ export default function Header() {
             <Link href="/contact">Contact</Link>
           </li>
         </ul>
-        <div className="h-[28px] w-[245px] mt-[11.67px] ml-[158px] flex justify-between items-center">
-          <Image
+        <div className="h-[28px] w-[245px] mt-[11.67px] ml-[158px] flex justify-around items-center">
+          <Link href={"/signin"}><Image
             src="/1.svg"
             alt="image"
             height={28}
             width={28}
             className="cursor-pointer"
-          />
+          /></Link>
           <Image
             src="/2.svg"
             alt="image"

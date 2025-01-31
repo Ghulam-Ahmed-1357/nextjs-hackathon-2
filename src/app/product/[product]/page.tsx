@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { getProducts } from "@/app/api_data/products";
 import { ProductData } from "@/types/data";
 import Link from "next/link";
 import Images from "@/components/images";
-import Footer from "@/components/footer";
 import { useEffect, useState } from "react";
+import { useCart } from "@/app/context/cartContext";
 
 export default function ProductDetail({
   params,
@@ -14,47 +14,50 @@ export default function ProductDetail({
 }) {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [products, setProducts] = useState<ProductData[]>([]);
-  const [count, setCount] = useState(1);
-  const [cart, setCart] = useState<ProductData[]>([]);
+  const [quantity, setQuantity] = useState(1);
+
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (product: ProductData) => {
+    addToCart(product, quantity);
+    alert("Product added successfully.");
+  };
+  // const [cart, setCart] = useState<ProductData[]>([]);
   // const [product, setProduct] = useState<ProductData | undefined>(undefined);
- 
-   useEffect(() => {
-      const fetchProducts = async () => {
-        try {
-          const products = await getProducts();
-          setProducts(products);
-        } catch (error) {
-          console.error("Error fetching products:", error);
-        }
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await getProducts();
+        setProducts(products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
       }
-      fetchProducts();
-    }, []);
- 
-   const handleAddToCart = (product: ProductData) => {
-     if(!cart.includes(product)){
-     setCart((prevProduct) => [...prevProduct, product]);
-     handleClickEvent();
-     } else{
-       alert("Product is already added in the cart")
-     }
-   };
- 
-   const handleDescription = () => {
-     setShowFullDescription(!showFullDescription);
-   };
- 
-     const handleClickEvent = ()=>{
-     alert("Product added successfully.")
-   }
- 
-     const increment = () => {
-     setCount(count + 1);
-   };
-     const decrement = () => {
-     if (count > 1) {
-       setCount(count - 1);
-     }
-   };
+    };
+    fetchProducts();
+  }, []);
+
+  //  const handleAddToCart = (product: ProductData) => {
+  //    if(!cart.includes(product)){
+  //    setCart((prevProduct) => [...prevProduct, product]);
+  //    alert("Product added successfully.");
+  //    } else{
+  //      alert("Product is already added in the cart")
+  //    }
+  //  };
+
+  const handleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
+  const increment = () => {
+    setQuantity(quantity + 1);
+  };
+  const decrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   const product: ProductData | undefined = products.find(
     (product: ProductData) => product._id === params.product
@@ -64,7 +67,7 @@ export default function ProductDetail({
     (p: ProductData) =>
       p._id !== product?._id &&
       p.tags.some((tag) => product?.tags.includes(tag))
-  ); 
+  );
 
   if (!product) {
     return (
@@ -134,7 +137,7 @@ export default function ProductDetail({
                 >
                   -
                 </button>
-                <div className="text-lg px-4">{count}</div>
+                <div className="text-lg px-4">{quantity}</div>
                 <button
                   className="w-1/4 rounded-e-xl text-xl px-2 py-1 bg-gray-200 hover:bg-gray-300"
                   onClick={increment}
@@ -173,10 +176,10 @@ export default function ProductDetail({
           </div>
         </div>
 
-        <div className="text-2xl md:text-5xl pt-12 md:pt-20 font-bold bg-gray-100 px-4 md:px-8 ">
+        <div className="text-2xl md:text-5xl pt-12 md:pt-20 font-bold bg-gray-200 px-4 md:px-8 ">
           Related Products
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-8 pt-6 md:pt-10 bg-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-8 pt-6 md:pt-10 bg-gray-200">
           {relatedProducts.slice(0, 4).map((product: ProductData) => (
             <Link href={`/product/${product._id}`} key={product._id}>
               <div className="transition-transform transform hover:scale-105">
@@ -202,15 +205,12 @@ export default function ProductDetail({
           ))}
         </div>
 
-        <div className="flex justify-center items-center py-10">
+        <div className="flex justify-center items-center py-10 bg-gray-200">
           <Link href={"/shop"}>
             <button className="h-[48px] w-[245px] text-color1 border-[1px] border-color1 flex justify-center items-center">
               Back to Shop
             </button>
           </Link>
-        </div>
-        <div className="bg-white flex justify-center items-center">
-          <Footer />
         </div>
       </div>
     );

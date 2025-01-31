@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Header from "../components/header";
 import Images from "../components/images";
-import Footer from "../components/footer";
 import { ProductData } from "@/types/data";
 import { getProducts } from "@/app/api_data/products";
 import Link from "next/link";
 export default async function Home() {
   const products = await getProducts();
   return (
-    <div className="h-[4835px] w-[1440px] bg-white overflow-hidden">
+    <div className="h-[4230px] w-[1440px] bg-white overflow-hidden">
       <Header />
       <div
         id="Banner -> Mask Group"
@@ -37,9 +36,9 @@ export default async function Home() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
               tellus, luctus nec ullamcorper mattis.
             </p>
-            <button className="h-[74px] w-[222px] absolute bottom-[0px] bg-color1 text-[#ffffff]">
+            <Link href={"/shop"}><button className="h-[74px] w-[222px] absolute bottom-[0px] bg-color1 text-[#ffffff]">
               BUY NOW
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>
@@ -245,9 +244,7 @@ export default async function Home() {
           />
         </div>
       </div>
-      <div className="absolute top-[4330px]">
-        <Footer />
-      </div>
+      
     </div>
   );
 }

@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function Features() {
   return (
-    <div className="h-[270px] w-[1440px] bg-[#faf3ea] flex justify-center items-center">
-      <div className="h-[70px] w-[1334px] flex justify-between">
-        <div className="h-[70px] w-[337px] flex gap-[10px]">
+    <div className="h-[270px] w-full bg-[#faf3ea] flex items-center">
+      <div className="h-[70px] px-[53px] flex justify-between">
+        <div className="h-full w-[337px] flex gap-[10px]">
           <div>
             <Image src="/trophy.png" alt="image" height={60} width={60} />
           </div>
