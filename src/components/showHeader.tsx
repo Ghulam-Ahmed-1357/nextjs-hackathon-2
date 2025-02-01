@@ -5,7 +5,7 @@ import Header from "./header";
 
 export default function ConditionalNavbar() {
   const pathname = usePathname();
-  const excludeRoutes = ["/signin", "/signup"];
+  const excludeRoutes = ["/studio/structure","/studio/vision","/studio/schedules/state/scheduled"];
 
   return excludeRoutes.includes(pathname) ? null : <Header />;
 }

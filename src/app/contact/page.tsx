@@ -3,7 +3,7 @@ import Herosection from "../../components/group78";
 import Image from "next/image";
 export default function Contact() {
   return (
-    <div className="h-[2365px] w-[1440] bg-white overflow-hidden">
+    <div className="h-[1701px] w-[1440] bg-white overflow-hidden">
 
       <div className="bg-white overflow-hidden">
         <Herosection
