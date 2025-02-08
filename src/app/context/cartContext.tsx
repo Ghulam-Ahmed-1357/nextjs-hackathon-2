@@ -1,4 +1,3 @@
-// context/CartContext.tsx
 "use client";
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { ProductData } from "@/types/data";

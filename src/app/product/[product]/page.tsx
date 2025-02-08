@@ -21,8 +21,6 @@ export default function ProductDetail({
   const handleAddToCart = (product: ProductData) => {
     addToCart(product, quantity);
   };
-  // const [cart, setCart] = useState<ProductData[]>([]);
-  // const [product, setProduct] = useState<ProductData | undefined>(undefined);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -35,16 +33,7 @@ export default function ProductDetail({
     };
     fetchProducts();
   }, []);
-
-  //  const handleAddToCart = (product: ProductData) => {
-  //    if(!cart.includes(product)){
-  //    setCart((prevProduct) => [...prevProduct, product]);
-  //    alert("Product added successfully.");
-  //    } else{
-  //      alert("Product is already added in the cart")
-  //    }
-  //  };
-
+  
   const handleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };

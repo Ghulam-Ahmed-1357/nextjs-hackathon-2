@@ -75,30 +75,3 @@ export default function Orders() {
     </div>
   );
 }
-
-// import { useEffect, useState } from "react";
-// import client from "@/sanityClient";
-
-// export default function Orders() {
-//   const [orders, setOrders] = useState([]);
-
-//   useEffect(() => {
-//     const user = JSON.parse(localStorage.getItem("user") || "null");
-//     if (!user) return;
-
-//     async function fetchOrders() {
-//       const result = await client.fetch(`*[_type == "order" && userId == $userId]`, { userId: user._id });
-//       setOrders(result);
-//     }
-    
-//     fetchOrders();
-//   }, []);
-
-//   return (
-//     <div>
-//       <h2>Your Orders</h2>
-//       {orders.length === 0 ? <p>No orders yet.</p> : orders.map(order => <p>{order.productName}</p>)}
-//     </div>
-//   );
-// }
-

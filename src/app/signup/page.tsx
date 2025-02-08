@@ -28,10 +28,8 @@ export default function SignUp() {
       if (res.ok && data.user) {
         alert("User created successfully!");
   
-        // Store user data & token
         localStorage.setItem("user", JSON.stringify(data.user));
   
-        // Redirect to home page
         router.push("/");
       } else {
         console.error("Signup failed:", data);
