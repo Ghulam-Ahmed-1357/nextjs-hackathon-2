@@ -9,9 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/client": "^6.27.2",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.70.0",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
     "next": "^14.2.23",
+    "next-auth": "^4.24.11",
     "next-sanity": "^9.8.38",
     "react": "^18",
     "react-dom": "^18",
@@ -20,6 +25,9 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.8",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

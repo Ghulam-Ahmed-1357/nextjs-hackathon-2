@@ -4,15 +4,45 @@ import Image from "next/image";
 import { useCart } from "@/app/context/cartContext";
 import { CartItem } from "@/app/context/cartContext";
 import Features from "@/components/frame161";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import client from "@/sanity/lib/client";
+
 
 export default function Cart() {
+  const router = useRouter();
+  const { cart, removeFromCart, addToCart, setCart } = useCart();
 
-  const { cart, removeFromCart, addToCart } = useCart();
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    if (!user) {
+      router.push("/signin");
+    }
+  }, [router]);
 
   const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  const handleCheckout = async () => {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    if (!user) {
+      router.push("/signin");
+      return;
+    }
+  
+    await client.create({
+      _type: "order",
+      userId: user._id,
+      items: cart,
+    });
+  
+    setCart([]);
+    router.push("/orders");
+  };
+  
+  
 
   return (
     <div className="w-full font-[Poppins] text-black">
@@ -99,7 +129,7 @@ export default function Cart() {
               <span className=" text-color1">Rp {subtotal}</span>{" "}
             </div>
             <div className="pt-12">
-              <button className="border border-black w-[222px] h-[58.95px] rounded-2xl py-[14px] px-[55px] text-xl font-normal">
+              <button onClick={handleCheckout} className="border border-black w-[222px] h-[58.95px] rounded-2xl py-[14px] px-[55px] text-xl font-normal">
                 Check Out
               </button>
             </div>

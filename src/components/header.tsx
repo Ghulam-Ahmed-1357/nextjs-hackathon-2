@@ -1,6 +1,33 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function Header() {
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+if (storedUser) {
+  setUser(JSON.parse(storedUser));
+}
+  }, []);
+
+  const handleAuthClick = () => {
+    if (user) {
+      const confirmLogout = window.confirm("Are you sure you want to log out?");
+      if (confirmLogout) {
+        localStorage.removeItem("user");
+        setUser(null);
+        router.push("/signin"); 
+      }
+    } else {
+      router.push("/signin");
+    }
+  };
+
   return (
     <div className="h-[100px] w-full bg-[#ffffff] bg-opacity-100 text-[#000000] text-opacity-100 ">
       <div className="h-[41px] w-[1286px] mt-[29px] ml-[54px] flex bg-white">
@@ -28,36 +55,45 @@ export default function Header() {
           <li>
             <Link href="/contact">Contact</Link>
           </li>
+          <li>
+            <Link href="/orders">Orders</Link>
+          </li>
         </ul>
         <div className="h-[28px] w-[245px] mt-[11.67px] ml-[158px] flex justify-around items-center">
-          <Link href={"/signin"}><Image
-            src="/1.svg"
-            alt="image"
-            height={28}
-            width={28}
-            className="cursor-pointer"
-          /></Link>
-          <Image
-            src="/2.svg"
-            alt="image"
-            height={28}
-            width={28}
-            className="cursor-pointer"
-          />
-          <Image
+          <button onClick={handleAuthClick}>
+            <Image
+              src="/1.svg"
+              alt="image"
+              height={28}
+              width={28}
+              className="cursor-pointer"
+            />
+          </button>
+          <Link href={"/shop?search=true"}>
+            <Image
+              src="/2.svg"
+              alt="image"
+              height={28}
+              width={28}
+              className="cursor-pointer"
+            />
+          </Link>
+          {/* <Image
             src="/3.svg"
             alt="image"
             height={28}
             width={28}
             className="cursor-pointer"
-          />
-          <Link href={"/cart"}><Image
-            src="/4.svg"
-            alt="image"
-            height={28}
-            width={28}
-            className="cursor-pointer"
-          /></Link>
+          /> */}
+          <Link href={"/cart"}>
+            <Image
+              src="/4.svg"
+              alt="image"
+              height={28}
+              width={28}
+              className="cursor-pointer"
+            />
+          </Link>
         </div>
       </div>
     </div>

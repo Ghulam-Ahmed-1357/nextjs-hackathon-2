@@ -20,7 +20,6 @@ export default function ProductDetail({
 
   const handleAddToCart = (product: ProductData) => {
     addToCart(product, quantity);
-    alert("Product added successfully.");
   };
   // const [cart, setCart] = useState<ProductData[]>([]);
   // const [product, setProduct] = useState<ProductData | undefined>(undefined);
