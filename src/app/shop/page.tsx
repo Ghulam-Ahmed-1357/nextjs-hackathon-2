@@ -5,21 +5,10 @@ import Features from "../../components/frame161";
 import Images from "@/components/images";
 import { ProductData } from "@/types/data";
 import Link from "next/link";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { getProducts } from "../api_data/products";
-import { useSearchParams } from "next/navigation";
 
 export default function Shop() {
-
-  const searchParams = useSearchParams();
-  const searchInputRef = useRef<HTMLInputElement>(null);
-  
-  useEffect(() => {
-    if (searchParams.get("search") === "true" && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [searchParams]);
-  
 
    const [products, setProducts] = useState<ProductData[]>([]);
    const [searchItem, setSearchItem] = useState("");
@@ -68,7 +57,6 @@ export default function Shop() {
 
       <div className="h-14 w-96 mt-24 ml-[100px] rounded-md flex flex-row justify-between items-center border border-black ">
         <input
-        ref={searchInputRef}
           className="pl-4 w-[86%] focus:outline-none"
           placeholder="Search"
           id="search"

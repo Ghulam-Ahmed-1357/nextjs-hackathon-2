@@ -69,7 +69,7 @@ if (storedUser) {
               className="cursor-pointer"
             />
           </button>
-          <Link href={"/shop?search=true"}>
+          <Link href={"/shop"}>
             <Image
               src="/2.svg"
               alt="image"
