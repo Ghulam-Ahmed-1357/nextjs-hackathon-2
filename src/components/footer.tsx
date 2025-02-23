@@ -4,16 +4,17 @@ export default function Footer() {
   return (
     <div className="h-[505px] w-full border-t-[1px] font-[Poppins] bg-white">
       
-      <div className="flex flex-row">
-        <div className="pt-12 pl-[100px]">
+      <div className="">
+      <div className="flex flex-row mx-10 md:mx-0">
+        <div className="pt-12 md:pl-[100px]">
         <p className="text-[24px] leading-[36px] font-bold">Funiro.</p>
-        <div className="h-[72px] w-[285px] pt-[52px] text-[16px] leading-[24px] font-normal text-[#9f9f9f]">
+        <div className="h-[72px] pt-[52px] text-[16px] leading-[24px] font-normal text-[#9f9f9f]">
           400 University Drive Suite 200 Coral Gables, <br />
           FL 33134 USA
         </div>
         </div>
 
-        <div className="flex flex-row pt-12 border-[1px] border-white pl-[138px]">
+        <div className="flex flex-row pt-12 border-[1px] border-white pl-4 md:pl-[138px]">
           <div className="">
             <p className="text-[16px] leading-[24px] font-medium text-[#9f9f9f]">
               Links
@@ -26,7 +27,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="pl-[162px]">
+          <div className="hidden md:block pl-[162px] md:pr-20 lg:pr-0">
             <p className="text-[16px] leading-[24px] font-medium text-[#9f9f9f]">
               Help
             </p>
@@ -37,7 +38,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="font-[Poppins] pl-[72px]">
+          <div className="font-[Poppins] pl-[72px] hidden lg:block">
             <p className="text-[16px] leading-[24px] font-medium text-[#9f9f9f]">
               Newsletter
             </p>
@@ -55,9 +56,10 @@ export default function Footer() {
           </div>
         </div>
         </div>
+        </div>
       
 
-      <div className="h-[59px] w-[1240px] mx-[100px] mt-12 border-t-[1px] border-[#d9d9d9] flex flex-col justify-end text-[16px] leading-[24px] font-normal">
+      <div className="h-[59px] mt-12 mx-10 lg:mx-[100px] border-t-[1px] border-[#d9d9d9] flex flex-col justify-end items-center text-[16px] leading-[24px] font-normal">
         2023 furino. All rights reverved
       </div>
     </div>
